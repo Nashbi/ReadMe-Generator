@@ -1,60 +1,64 @@
 // TODO: Include packages needed for this application
 
 var fs = require('fs')
-var Inquirer = require('Inquirer')
+var inquirer = require('inquirer')
 var util = require('util')
+const path = require('path')
 
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
         type: "input",
-        question: "What is the title of your ReadMe?",
+        message: "What is the title of your ReadMe?",
         name: "title",
     },
     {
         type: "input",
-        question: "What is your description?",
-        name: "Description",
+        message: "What is your description?",
+        name: "description",
     },
     {
         type: "input",
-        question: "What would you like in your table of contents?",
-        name: "Table of content",
+        message: "What would you like in your table of contents?",
+        name: "contents",
     },
     {
         type: "input",
-        question: "What are the steps needed to install your project? Are there any additional tools needed?",
-        name: "Installations",
+        message: "What are the steps needed to install your project? Are there any additional tools needed?",
+        name: "installations",
     },
     {
         type: "input",
-        question: "Please list any instructions for usage.",
-        name: "Usage instructions",
+        message: "Please list any instructions for usage.",
+        name: "usage",
     },
     {
         type: "input",
-        question: "Are there any contributors you'd like to honor?",
+        message: "Are there any contributors you'd like to honor?",
         name: "contributors",
     },
     {
         type: "input",
-        question: "Please list any licenses needed",
+        message: "Please list any licenses needed",
         name: "licenses",
     },
     
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(readMe, data, ) {
+function writeToFile(readMe, data,) {
     if (err) throw err;
-    console.log('File successfully created!')
-
+    return fs.writeFileSync(path.join(process.cwd(), readMe), data);
 }
 
 // TODO: Create a function to initialize app
 function init() {
 
+inquirer.prompt(questions).then((userAnswers) => {
+
+    writeToFile('README.md', generateMarkdown({userAnswers}));
+});
     
 }
 
