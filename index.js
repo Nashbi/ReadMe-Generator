@@ -1,9 +1,12 @@
 // TODO: Include packages needed for this application
 
+// import { generateMarkdown } from "./utils/generateMarkdown";
+
 var fs = require('fs')
 var inquirer = require('inquirer')
 var util = require('util')
 const path = require('path')
+
 
 
 // TODO: Create an array of questions for user input
